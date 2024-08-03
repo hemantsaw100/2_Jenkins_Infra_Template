@@ -9,18 +9,17 @@ pipeline {
 
     stages{
 
-        stage('Clone Repository'){
-            steps{
+        stage('Clone Repository') {
+            steps {
                 // Clean workspace before cloning (optional)
                 deleteDir()
 
-                // Clone the Infra Git repository
+                // Clone the Git repository
                 git branch: 'main',
-                    url: https://github.com/hemantsaw100/2_Jenkins_Infra_Template.git
+                    url: 'https://github.com/hemantsaw100/2_Jenkins_Infra_Template.git'
 
-                sh "ls -lart"   // lart -> long listing format, all, reverse, sort by time-newest first
+                sh "ls -lart"  // lart -> long listing format, all, reverse, sort by time-newest first
             }
-
         }
 
         stage('Terraform Init') {
