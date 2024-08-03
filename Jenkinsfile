@@ -37,7 +37,7 @@ pipeline {
             steps {
                 script {
                     if (params.APPLY_TERRAFORM) {
-                       withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-crendentails-hemant']]){
+                       withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-credentials-hemant']]){
                             dir('infra') {
                                 sh 'echo "=================Terraform Apply=================="'
                                 sh 'terraform apply -auto-approve'
@@ -52,7 +52,7 @@ pipeline {
             steps{
                 script{
                     if (params.DESTROY_TERRAFORM) {
-                        withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-crendentails-hemant']]){
+                        withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-credentials-hemant']]){
                             dir('infra') {
                                 sh 'echo "=================Terraform Destroy=================="'
                                 sh 'terraform destroy -auto-approve'
