@@ -14,6 +14,6 @@ output "jenkins_ec2_instance_id" {
 }
 
 output "jenkins_ec2_instance_public_ip" {
-  value = "${module.ec2-jenkins.jenkins_ec2_instance_public_ip}:8080"
+  value = "https://${module.ec2-jenkins.jenkins_ec2_instance_public_ip}:8080"
 }
 
