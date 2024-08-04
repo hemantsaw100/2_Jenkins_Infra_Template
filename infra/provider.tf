@@ -1,5 +1,5 @@
 provider "aws" {
-  region                   = "ap-south-1"             # Mumbai
+  region                   = "ap-northeast-1"             # Tokyo
   profile                  = "terraform-project-user" # IAM User
   shared_credentials_files = ["C:/Users/hesaw/.aws/credentials"]
 }
