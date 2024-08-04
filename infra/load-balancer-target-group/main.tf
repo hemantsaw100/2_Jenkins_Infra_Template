@@ -15,7 +15,7 @@ resource "aws_lb_target_group" "lb_target_group" {
     vpc_id      = var.vpc_id
 
     health_check{
-        path = "/login"
+        path = "/health"
         port = 5000
         protocol = "HTTP"
         timeout = 2
