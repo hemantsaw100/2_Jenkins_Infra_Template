@@ -28,30 +28,30 @@ module "ec2-jenkins" {
   # {} is a map of variables that can be passed into the template to replace placeholders. In this case, an empty map {} is used, which means no variables are being substituted in the script.
 }
 
-module "load-balancer-target-group" {
-  source                   = "./load-balancer-target-group"
-  vpc_id                   = module.networking.vpc_id
-  lb_target_group_name     = "jenkins-lb-target-group"
-  ec2_instance_id          = module.ec2-jenkins.jenkins_ec2_instance_id
-  lb_target_group_port     = 5000
-  lb_target_group_protocol = "HTTP"
-}
+# module "load-balancer-target-group" {
+#   source                   = "./load-balancer-target-group"
+#   vpc_id                   = module.networking.vpc_id
+#   lb_target_group_name     = "jenkins-lb-target-group"
+#   ec2_instance_id          = module.ec2-jenkins.jenkins_ec2_instance_id
+#   lb_target_group_port     = 5000
+#   lb_target_group_protocol = "HTTP"
+# }
 
-module "application-load-balancer" {
-  source                          = "./load-balancer"
-  lb_name                         = "alb"
-  lb_internal                     = "false"
-  lb_type                         = "application"
-  lb_security_groups              = [module.security_groups.sg_ec2_sg_ssh_http]
-  lb_subnets                      = tolist(module.networking.public_subnets)
-  lb_target_group_arn             = module.load-balancer-target-group.lb_target_group_arn
-  lb_target_group_attachment_port = 5000
-  ec2_instance_id                 = module.ec2-jenkins.jenkins_ec2_instance_id
-  listener_port                   = 5000
-  lb_listner_protocol             = "HTTP"
-  listener_default_action         = "forward"
-  listener_target_group_arn       = module.load-balancer-target-group.lb_target_group_arn
-}
+# module "application-load-balancer" {
+#   source                          = "./load-balancer"
+#   lb_name                         = "alb"
+#   lb_internal                     = "false"
+#   lb_type                         = "application"
+#   lb_security_groups              = [module.security_groups.sg_ec2_sg_ssh_http]
+#   lb_subnets                      = tolist(module.networking.public_subnets)
+#   lb_target_group_arn             = module.load-balancer-target-group.lb_target_group_arn
+#   lb_target_group_attachment_port = 5000
+#   ec2_instance_id                 = module.ec2-jenkins.jenkins_ec2_instance_id
+#   listener_port                   = 5000
+#   lb_listner_protocol             = "HTTP"
+#   listener_default_action         = "forward"
+#   listener_target_group_arn       = module.load-balancer-target-group.lb_target_group_arn
+# }
 
 module "rds" {
   source               = "./rds"
