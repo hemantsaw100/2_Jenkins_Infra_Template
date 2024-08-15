@@ -58,7 +58,7 @@ module "rds" {
   db_subnet_group_name = "rds_subnet_group"
   subnet_groups        = tolist(module.networking.public_subnets)
   rds_mysql_sg_id      = module.security_groups.rds_mysql_sg_id
-  mysql_db_identifier  = "mydb"
+  mysql_db_identifier  = "mysqlFlaskDB"
   mysql_username       = "dbuser"
   mysql_password       = var.mysql_password
   mysql_dbname         = "mysqlFlaskDB"
