@@ -61,6 +61,6 @@ module "rds" {
   mysql_db_identifier  = "mydb"
   mysql_username       = "dbuser"
   mysql_password       = var.mysql_password
-  mysql_dbname         = "terraform-jenkins-python-db"
+  mysql_dbname         = "mysqlFlaskDB"
 
 }
